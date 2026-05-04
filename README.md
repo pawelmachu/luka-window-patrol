@@ -124,3 +124,12 @@ This version follows safer browser-game deployment practices:
 - mobile controls verified
 - desktop arrow controls verified
 - audio wake helper verified
+
+
+## V15 mobile screen fix
+
+- enlarged the game canvas for iPhone 16 Pro style portrait screens
+- tightened the top header and HUD spacing
+- enlarged in-game popups
+- rewrote the bottom mobile instructions with clearer text
+- improved mobile typography so the text feels more consistent

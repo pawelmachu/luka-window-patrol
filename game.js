@@ -1,3 +1,4 @@
+// V15 mobile screen and text polish
 // V14 final tested mobile build
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
@@ -964,33 +965,39 @@ function drawBarkZone() {
 }
 
 function drawOverlayBox(title, bodyLines, buttonText, footerText = "") {
-  ctx.fillStyle = "rgba(255, 250, 244, 0.96)";
+  // Larger mobile-friendly overlay inside the canvas.
+  const x = 88;
+  const y = 72;
+  const w = 784;
+  const h = 392;
+
+  ctx.fillStyle = "rgba(255, 250, 244, 0.97)";
   ctx.beginPath();
-  ctx.roundRect(130, 92, 700, 360, 30);
+  ctx.roundRect(x, y, w, h, 32);
   ctx.fill();
 
-  strokeRoundedRect(148, 110, 664, 324, 24, "#3f3646", 5);
+  strokeRoundedRect(x + 16, y + 16, w - 32, h - 32, 24, "#3f3646", 6);
 
   ctx.textAlign = "center";
   ctx.fillStyle = "#3f3646";
-  ctx.font = "bold 44px Arial";
-  ctx.fillText(title, 480, 172);
+  ctx.font = "bold 52px Arial";
+  ctx.fillText(title, 480, y + 84);
 
-  ctx.font = "18px Arial";
+  ctx.font = "22px Arial";
   bodyLines.forEach((line, index) => {
-    ctx.fillText(line, 480, 220 + index * 28);
+    ctx.fillText(line, 480, y + 140 + index * 34);
   });
 
-  roundedRect(350, 316, 260, 58, 999, "#5b8566");
-  strokeRoundedRect(350, 316, 260, 58, 999, "#3f3646", 4);
+  roundedRect(324, y + 250, 312, 68, 999, "#5b8566");
+  strokeRoundedRect(324, y + 250, 312, 68, 999, "#3f3646", 5);
   ctx.fillStyle = "#f7ffdb";
-  ctx.font = "bold 22px Arial";
-  ctx.fillText(buttonText, 480, 353);
+  ctx.font = "bold 28px Arial";
+  ctx.fillText(buttonText, 480, y + 294);
 
   if (footerText) {
     ctx.fillStyle = "#3f3646";
-    ctx.font = "15px Arial";
-    ctx.fillText(footerText, 480, 405);
+    ctx.font = "17px Arial";
+    ctx.fillText(footerText, 480, y + 350);
   }
 
   ctx.textAlign = "left";
@@ -1005,7 +1012,7 @@ function drawTitleScreen() {
       "Finish all 5 levels to prove Luka owns the window."
     ],
     "Start game",
-    "Press Enter, Space or click Start / Continue"
+    "Press Enter, Space or tap Start"
   );
 }
 
@@ -1019,7 +1026,7 @@ function drawLevelIntro() {
       `Target: ${level.target} good barks in ${LEVEL_DURATION} seconds`
     ],
     "Begin level",
-    "Press Enter, Space or click BARK"
+    "Tap BARK or press Space"
   );
 }
 
@@ -1032,7 +1039,7 @@ function drawLevelComplete() {
       "Luka is not done supervising."
     ],
     "Continue",
-    "Press Enter, Space or click Start / Continue"
+    "Press Enter, Space or tap Start"
   );
 }
 
@@ -1041,11 +1048,11 @@ function drawPausedScreen() {
     "Paused",
     [
       "Luka is still watching the window.",
-      "Nothing suspicious will move while paused.",
-      "Resume when you are ready."
+      "Nothing moves while the game is paused.",
+      "Tap Resume when you are ready."
     ],
     "Resume",
-    "Press Enter, click Start / Continue or press Pause again"
+    "Tap Resume or press Enter"
   );
 }
 
@@ -1058,7 +1065,7 @@ function drawGameOver() {
       "Too many suspicious things passed calmly."
     ],
     "Try again",
-    "Press Enter or click Restart from beginning"
+    "Tap Restart or press Enter"
   );
 }
 
@@ -1071,7 +1078,7 @@ function drawWonScreen() {
       "Final status: tiny, fluffy, unstoppable."
     ],
     "Play again",
-    "Press Enter or click Restart from beginning"
+    "Tap Restart or press Enter"
   );
 }
 
