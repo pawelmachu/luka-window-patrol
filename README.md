@@ -133,3 +133,12 @@ This version follows safer browser-game deployment practices:
 - enlarged in-game popups
 - rewrote the bottom mobile instructions with clearer text
 - improved mobile typography so the text feels more consistent
+
+
+## V16 mobile scale fix
+
+- restored the correct 16:9 mobile game canvas proportions
+- reduced the extra UI height so the game feels more balanced on iPhone
+- removed the extra fixed capture field from the background
+- kept only one moving bark zone that follows Luka
+- refined popup sizing and wording

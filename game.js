@@ -631,11 +631,6 @@ function drawBackground() {
   ctx.lineTo(846, 190);
   ctx.stroke();
 
-  ctx.strokeStyle = "rgba(63,54,70,0.16)";
-  ctx.setLineDash([10, 8]);
-  ctx.lineWidth = 3;
-  ctx.strokeRect(430, 110, 380, 165);
-  ctx.setLineDash([]);
 
   ctx.fillStyle = theme.curtain;
   ctx.beginPath();
@@ -955,49 +950,51 @@ function drawLevelTag() {
 function drawBarkZone() {
   if (gameState !== GAME_STATE.PLAYING) return;
   const barkCenter = 610 + lukaX * 0.35;
-  ctx.fillStyle = "rgba(91,133,102,0.06)";
-  ctx.fillRect(barkCenter - 165, 82, 330, 285);
-  ctx.strokeStyle = "rgba(91,133,102,0.24)";
-  ctx.setLineDash([8, 10]);
-  ctx.lineWidth = 3;
-  ctx.strokeRect(barkCenter - 165, 82, 330, 285);
+  const zoneX = barkCenter - 142;
+  const zoneY = 96;
+  const zoneW = 284;
+  const zoneH = 188;
+
+  ctx.strokeStyle = "rgba(91,133,102,0.34)";
+  ctx.setLineDash([10, 8]);
+  ctx.lineWidth = 4;
+  ctx.strokeRect(zoneX, zoneY, zoneW, zoneH);
   ctx.setLineDash([]);
 }
 
 function drawOverlayBox(title, bodyLines, buttonText, footerText = "") {
-  // Larger mobile-friendly overlay inside the canvas.
-  const x = 88;
-  const y = 72;
-  const w = 784;
-  const h = 392;
+  const x = 118;
+  const y = 92;
+  const w = 724;
+  const h = 336;
 
   ctx.fillStyle = "rgba(255, 250, 244, 0.97)";
   ctx.beginPath();
-  ctx.roundRect(x, y, w, h, 32);
+  ctx.roundRect(x, y, w, h, 28);
   ctx.fill();
 
-  strokeRoundedRect(x + 16, y + 16, w - 32, h - 32, 24, "#3f3646", 6);
+  strokeRoundedRect(x + 12, y + 12, w - 24, h - 24, 22, "#3f3646", 5);
 
   ctx.textAlign = "center";
   ctx.fillStyle = "#3f3646";
-  ctx.font = "bold 52px Arial";
-  ctx.fillText(title, 480, y + 84);
+  ctx.font = "bold 46px Arial";
+  ctx.fillText(title, 480, y + 72);
 
-  ctx.font = "22px Arial";
+  ctx.font = "19px Arial";
   bodyLines.forEach((line, index) => {
-    ctx.fillText(line, 480, y + 140 + index * 34);
+    ctx.fillText(line, 480, y + 126 + index * 32);
   });
 
-  roundedRect(324, y + 250, 312, 68, 999, "#5b8566");
-  strokeRoundedRect(324, y + 250, 312, 68, 999, "#3f3646", 5);
+  roundedRect(336, y + 220, 288, 60, 999, "#5b8566");
+  strokeRoundedRect(336, y + 220, 288, 60, 999, "#3f3646", 4);
   ctx.fillStyle = "#f7ffdb";
-  ctx.font = "bold 28px Arial";
-  ctx.fillText(buttonText, 480, y + 294);
+  ctx.font = "bold 25px Arial";
+  ctx.fillText(buttonText, 480, y + 258);
 
   if (footerText) {
     ctx.fillStyle = "#3f3646";
-    ctx.font = "17px Arial";
-    ctx.fillText(footerText, 480, y + 350);
+    ctx.font = "16px Arial";
+    ctx.fillText(footerText, 480, y + 308);
   }
 
   ctx.textAlign = "left";
@@ -1007,9 +1004,9 @@ function drawTitleScreen() {
   drawOverlayBox(
     "Luka: Window Patrol",
     [
-      "The garden is full of suspicious movement.",
-      "Bark at people and cats. Do not bark at bees.",
-      "Finish all 5 levels to prove Luka owns the window."
+      "The garden is full of suspicious visitors.",
+      "Bark at people and cats. Ignore bees.",
+      "Clear all 5 levels to prove Luka owns the window."
     ],
     "Start game",
     "Press Enter, Space or tap Start"
@@ -1048,7 +1045,7 @@ function drawPausedScreen() {
     "Paused",
     [
       "Luka is still watching the window.",
-      "Nothing moves while the game is paused.",
+      "Everything stops while the game is paused.",
       "Tap Resume when you are ready."
     ],
     "Resume",
