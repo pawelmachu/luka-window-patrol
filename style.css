@@ -1,4 +1,4 @@
-/* V19 landscape recommended */
+/* V20 true landscape mobile */
 * {
   box-sizing: border-box;
 }
@@ -457,7 +457,9 @@ button.is-pressed {
 }
 
 
-/* V19 landscape recommendation + landscape mobile mode */
+
+
+/* V20 portrait hint */
 @media (max-width: 768px) and (orientation: portrait) {
   .rotate-hint {
     display: flex;
@@ -484,162 +486,196 @@ button.is-pressed {
   }
 }
 
-@media (max-width: 950px) and (orientation: landscape) {
+/* V20 true landscape game layout.
+   Designed for iPhone landscape where Safari still takes vertical space. */
+@media (orientation: landscape) and (max-height: 520px) {
+  html,
+  body {
+    min-height: 100svh;
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
   body {
     padding:
       max(2px, env(safe-area-inset-top))
       max(4px, env(safe-area-inset-right))
       max(2px, env(safe-area-inset-bottom))
       max(4px, env(safe-area-inset-left));
-    overflow: hidden;
   }
 
   .app-shell {
     width: 100%;
     height: calc(100svh - max(2px, env(safe-area-inset-top)) - max(2px, env(safe-area-inset-bottom)));
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    gap: 4px;
+    display: block;
+    margin: 0;
   }
 
-  .app-header {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: center;
-    gap: 6px;
-  }
-
-  h1 {
-    font-size: clamp(18px, 4.2vw, 28px);
-    line-height: 0.95;
-  }
-
-  .subtitle {
-    display: none;
-  }
-
-  .header-side {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .badge-wrap {
-    width: 38px;
-    height: 38px;
-    border-radius: 11px;
-    border-width: 2px;
-  }
-
-  .small-button {
-    min-width: 78px;
-    padding: 5px 8px;
-    font-size: 10.5px;
-    border-width: 2px;
-  }
-
-  .rotate-hint {
+  .app-header,
+  .rotate-hint,
+  .help-card,
+  .desktop-controls {
     display: none !important;
   }
 
   .game-column {
-    display: grid;
-    grid-template-rows: auto minmax(0, 1fr) auto;
-    gap: 4px;
+    width: 100%;
+    height: 100%;
     min-height: 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(188px, 24vw, 238px);
+    grid-template-rows: 32px minmax(0, 1fr);
+    grid-template-areas:
+      "hud hud"
+      "game controls";
+    gap: 5px;
+    align-items: stretch;
   }
 
   .hud {
+    grid-area: hud;
+    display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 4px;
+    gap: 5px;
+    min-height: 0;
   }
 
   .hud div {
-    padding: 4px 3px;
-    font-size: 9.6px;
-    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 4px;
     border-width: 2px;
+    border-radius: 12px;
+    font-size: 10.4px;
+    line-height: 1;
     box-shadow: 0 3px 0 rgba(63, 54, 70, 0.18);
   }
 
   .canvas-frame {
+    grid-area: game;
+    min-width: 0;
     min-height: 0;
+    height: 100%;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
   }
 
   canvas {
-    width: min(100%, calc((100svh - 124px) * 1.7778));
-    height: auto;
-    max-height: calc(100svh - 124px);
+    height: min(100%, calc(100svh - 40px));
+    width: auto;
+    max-width: 100%;
+    max-height: calc(100svh - 40px);
     aspect-ratio: 16 / 9;
     border-width: 4px;
     border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.14);
-  }
-
-  .desktop-controls {
-    display: none;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
+    display: block;
   }
 
   .mobile-controls {
+    grid-area: controls;
+    min-width: 0;
+    min-height: 0;
     display: grid;
-    grid-template-columns: 0.82fr 1.18fr;
+    grid-template-rows: 1fr 1.15fr;
     gap: 6px;
-    align-items: stretch;
+    align-self: stretch;
   }
 
   .mobile-top-row {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
     gap: 5px;
   }
 
   .mobile-play-row {
     display: grid;
-    grid-template-columns: 0.72fr 1.45fr 0.72fr;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.9fr 1.25fr;
     gap: 6px;
+    grid-template-areas:
+      "left right"
+      "bark bark";
+  }
+
+  #mobileLeftButton {
+    grid-area: left;
+  }
+
+  #mobileRightButton {
+    grid-area: right;
+  }
+
+  #mobileBarkButton {
+    grid-area: bark;
   }
 
   .mobile-controls button {
-    min-height: 38px;
+    width: 100%;
+    min-height: 0;
     border-radius: 16px;
     border-width: 2px;
-    padding: 6px 8px;
+    padding: 5px 8px;
     font-size: 12px;
     box-shadow: 0 4px 0 rgba(63, 54, 70, 0.22);
   }
 
   .move-button {
     font-size: 24px !important;
+    line-height: 1;
   }
 
   .bark-mobile {
-    min-height: 46px !important;
+    min-height: 0 !important;
     font-size: 20px !important;
-  }
-
-  .help-card {
-    display: none;
+    letter-spacing: 0.04em;
   }
 }
 
-@media (max-width: 950px) and (orientation: landscape) and (max-height: 430px) {
-  .app-header {
-    display: none;
-  }
-
-  .app-shell {
-    grid-template-rows: 1fr auto;
-  }
-
+/* Extra tight landscape, e.g. iPhone Safari with address bar visible */
+@media (orientation: landscape) and (max-height: 410px) {
   .game-column {
-    grid-template-rows: auto minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr) clamp(174px, 22vw, 218px);
+    grid-template-rows: 28px minmax(0, 1fr);
+    gap: 4px;
+  }
+
+  .hud div {
+    font-size: 9.4px;
+    border-radius: 10px;
   }
 
   canvas {
-    width: min(100%, calc((100svh - 92px) * 1.7778));
-    max-height: calc(100svh - 92px);
+    height: min(100%, calc(100svh - 34px));
+    max-height: calc(100svh - 34px);
+    border-radius: 18px;
+  }
+
+  .mobile-controls {
+    gap: 5px;
+  }
+
+  .mobile-top-row {
+    gap: 4px;
+  }
+
+  .mobile-play-row {
+    gap: 5px;
+  }
+
+  .mobile-controls button {
+    font-size: 11px;
+    border-radius: 14px;
+  }
+
+  .move-button {
+    font-size: 22px !important;
+  }
+
+  .bark-mobile {
+    font-size: 18px !important;
   }
 }

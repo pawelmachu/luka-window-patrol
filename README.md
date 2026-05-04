@@ -167,3 +167,14 @@ This version follows safer browser-game deployment practices:
 - landscape mode is optimized for a bigger game canvas
 - landscape mode hides the bottom help card to give more room to the game
 - controls are rearranged for a more game-like landscape mobile experience
+
+
+## V20 true landscape mobile
+
+- landscape mode now uses a real game layout:
+  - HUD on top
+  - large game canvas on the left
+  - touch controls on the right
+- this prevents the controls from disappearing below the screen in iPhone landscape Safari
+- portrait mode still works and keeps the rotate hint
+- Safari’s address bar may still appear in normal browser mode; for the cleanest full-screen feeling, add the site to the iPhone Home Screen
