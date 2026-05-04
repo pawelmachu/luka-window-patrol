@@ -142,3 +142,11 @@ This version follows safer browser-game deployment practices:
 - removed the extra fixed capture field from the background
 - kept only one moving bark zone that follows Luka
 - refined popup sizing and wording
+
+
+## V17 iPhone 16 Pro tuning
+
+- tightened the mobile UI so the game uses more of the tall iPhone screen
+- reduced header, HUD, button, and bottom help-card height
+- kept the game screen proportional while making it feel larger on phone
+- adjusted the bark zone so it starts at the bottom of the window view and reaches up to the highest character

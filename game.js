@@ -1,4 +1,4 @@
-// V15 mobile screen and text polish
+// V17 iPhone 16 Pro mobile tuning
 // V14 final tested mobile build
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
@@ -949,11 +949,16 @@ function drawLevelTag() {
 
 function drawBarkZone() {
   if (gameState !== GAME_STATE.PLAYING) return;
+
   const barkCenter = 610 + lukaX * 0.35;
-  const zoneX = barkCenter - 142;
-  const zoneY = 96;
+  const zoneY = 118;
+  const zoneBottom = 366;
+  const zoneH = zoneBottom - zoneY;
   const zoneW = 284;
-  const zoneH = 188;
+  const zoneX = barkCenter - zoneW / 2;
+
+  ctx.fillStyle = "rgba(91,133,102,0.05)";
+  ctx.fillRect(zoneX, zoneY, zoneW, zoneH);
 
   ctx.strokeStyle = "rgba(91,133,102,0.34)";
   ctx.setLineDash([10, 8]);

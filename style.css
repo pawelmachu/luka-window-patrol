@@ -1,4 +1,4 @@
-/* V16 mobile scale fix */
+/* V17 iPhone 16 Pro mobile tuning */
 * {
   box-sizing: border-box;
 }
@@ -244,24 +244,24 @@ button.is-pressed {
 
   body {
     padding:
-      max(8px, env(safe-area-inset-top))
-      max(10px, env(safe-area-inset-right))
-      max(10px, env(safe-area-inset-bottom))
-      max(10px, env(safe-area-inset-left));
+      max(4px, env(safe-area-inset-top))
+      max(6px, env(safe-area-inset-right))
+      max(6px, env(safe-area-inset-bottom))
+      max(6px, env(safe-area-inset-left));
     overflow: hidden;
   }
 
   .app-shell {
     width: 100%;
-    height: calc(100svh - max(6px, env(safe-area-inset-top)) - max(8px, env(safe-area-inset-bottom)));
-    gap: 6px;
+    height: calc(100svh - max(4px, env(safe-area-inset-top)) - max(6px, env(safe-area-inset-bottom)));
+    gap: 4px;
   }
 
   .app-header {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: start;
-    gap: 10px;
+    gap: 6px;
   }
 
   .title-wrap {
@@ -269,9 +269,9 @@ button.is-pressed {
   }
 
   h1 {
-    font-size: clamp(22px, 6.8vw, 31px);
+    font-size: clamp(21px, 6.4vw, 29px);
     line-height: 0.92;
-    letter-spacing: -0.04em;
+    letter-spacing: -0.035em;
   }
 
   .subtitle {
@@ -281,20 +281,20 @@ button.is-pressed {
   .header-side {
     display: grid;
     justify-items: end;
-    gap: 8px;
+    gap: 5px;
   }
 
   .badge-wrap {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     border-width: 2px;
-    border-radius: 14px;
+    border-radius: 13px;
   }
 
   .small-button {
-    min-width: 88px;
-    padding: 7px 9px;
-    font-size: 11.5px;
+    min-width: 82px;
+    padding: 6px 9px;
+    font-size: 11px;
     border-width: 2px;
   }
 
@@ -304,16 +304,19 @@ button.is-pressed {
   }
 
   .hud div {
-    padding: 5px 2px;
+    padding: 4px 2px;
     border-width: 2px;
     border-radius: 11px;
-    font-size: 10px;
-    box-shadow: 0 4px 0 rgba(63, 54, 70, 0.18);
+    font-size: 9.4px;
+    box-shadow: 0 3px 0 rgba(63, 54, 70, 0.18);
   }
 
   .canvas-frame {
-    flex: 0 0 auto;
+    flex: 1 1 auto;
     min-height: 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
   }
 
   canvas {
@@ -324,7 +327,7 @@ button.is-pressed {
     aspect-ratio: 16 / 9;
     border-width: 4px;
     border-radius: 22px;
-    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.16);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
   }
 
   .desktop-controls {
@@ -333,51 +336,51 @@ button.is-pressed {
 
   .mobile-controls {
     display: grid;
-    gap: 6px;
+    gap: 5px;
     flex: 0 0 auto;
-    padding-bottom: 1px;
+    padding-bottom: 0;
   }
 
   .mobile-top-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 7px;
+    gap: 5px;
   }
 
   .mobile-play-row {
     display: grid;
-    grid-template-columns: 0.75fr 1.5fr 0.75fr;
-    gap: 8px;
+    grid-template-columns: 0.72fr 1.56fr 0.72fr;
+    gap: 6px;
     align-items: stretch;
   }
 
   .mobile-controls button {
-    min-height: 42px;
-    border-radius: 19px;
+    min-height: 39px;
+    border-radius: 18px;
     border-width: 2px;
-    padding: 8px 10px;
-    font-size: 14px;
-    box-shadow: 0 5px 0 rgba(63, 54, 70, 0.22);
+    padding: 7px 8px;
+    font-size: 13px;
+    box-shadow: 0 4px 0 rgba(63, 54, 70, 0.22);
   }
 
   .move-button {
-    font-size: 28px !important;
+    font-size: 26px !important;
     line-height: 1;
     background: linear-gradient(180deg, #fffdf8 0%, #efe7dd 100%);
     color: var(--ink);
   }
 
   .bark-mobile {
-    min-height: 58px !important;
-    font-size: 22px !important;
-    letter-spacing: 0.04em;
+    min-height: 54px !important;
+    font-size: 21px !important;
+    letter-spacing: 0.03em;
   }
 
   .help-card {
     border-radius: 16px;
-    padding: 7px 10px;
-    font-size: 10.8px;
-    line-height: 1.18;
+    padding: 6px 9px;
+    font-size: 10.2px;
+    line-height: 1.16;
     font-weight: 600;
   }
 
@@ -439,8 +442,20 @@ button.is-pressed {
 }
 
 
-/* V16 tall iPhone optimization */
-@media (max-width: 768px) and (min-height: 820px) {
+/* V17 iPhone 16 Pro optimization */
+@media (max-width: 430px) and (min-height: 820px) {
+  body {
+    padding:
+      max(2px, env(safe-area-inset-top))
+      max(4px, env(safe-area-inset-right))
+      max(4px, env(safe-area-inset-bottom))
+      max(4px, env(safe-area-inset-left));
+  }
+
+  .app-shell {
+    gap: 4px;
+  }
+
   canvas {
     width: 100%;
     height: auto;
@@ -448,21 +463,25 @@ button.is-pressed {
   }
 
   .help-card {
-    font-size: 11.2px;
-    padding: 8px 10px;
+    font-size: 10.4px;
+    padding: 6px 9px;
   }
 }
 
 @media (max-width: 430px) and (min-height: 850px) {
+  .hud div {
+    font-size: 9.2px;
+  }
+
   .mobile-controls button {
-    min-height: 43px;
+    min-height: 38px;
   }
 
   .bark-mobile {
-    min-height: 60px !important;
+    min-height: 52px !important;
   }
 
   .help-card {
-    font-size: 11px;
+    font-size: 10px;
   }
 }
