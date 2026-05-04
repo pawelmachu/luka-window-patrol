@@ -1,4 +1,4 @@
-/* V21 balanced landscape */
+/* V23 split controls */
 * {
   box-sizing: border-box;
 }
@@ -461,7 +461,9 @@ button.is-pressed {
 
 
 
-/* V21 portrait hint */
+
+
+/* V23 portrait hint */
 @media (max-width: 768px) and (orientation: portrait) {
   .rotate-hint {
     display: flex;
@@ -488,8 +490,9 @@ button.is-pressed {
   }
 }
 
-/* V21 balanced landscape for Safari and Home Screen */
-@media (orientation: landscape) and (max-height: 520px) {
+/* V23 landscape split-thumb layout.
+   Left side = movement. Right side = BARK + menu. Center = game. */
+@media (orientation: landscape) and (max-height: 560px) {
   html,
   body {
     min-height: 100svh;
@@ -509,7 +512,7 @@ button.is-pressed {
     width: 100%;
     height: calc(100svh - max(2px, env(safe-area-inset-top)) - max(2px, env(safe-area-inset-bottom)));
     display: grid;
-    grid-template-rows: 28px 28px 1fr;
+    grid-template-rows: 30px minmax(0, 1fr);
     gap: 4px;
     margin: 0;
   }
@@ -536,7 +539,7 @@ button.is-pressed {
 
   h1 {
     margin: 0;
-    font-size: clamp(16px, 3.7vw, 24px);
+    font-size: clamp(16px, 3.8vw, 24px);
     line-height: 0.95;
     letter-spacing: -0.03em;
     white-space: nowrap;
@@ -561,14 +564,14 @@ button.is-pressed {
   }
 
   .luka-badge {
-    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
   }
 
   .small-button {
-    min-width: 74px;
+    min-width: 76px;
     padding: 4px 8px;
     font-size: 10px;
     border-width: 2px;
@@ -576,14 +579,16 @@ button.is-pressed {
   }
 
   .game-column {
+    width: 100%;
+    height: 100%;
     min-height: 0;
     display: grid;
-    grid-template-columns: 72px minmax(0, 1fr) 108px;
+    grid-template-columns: clamp(90px, 11vw, 126px) minmax(0, 1fr) clamp(132px, 17vw, 190px);
     grid-template-rows: 28px minmax(0, 1fr);
     grid-template-areas:
       "hud hud hud"
-      "left game right";
-    gap: 4px;
+      "controls game controls";
+    gap: 5px;
     align-items: stretch;
   }
 
@@ -591,7 +596,7 @@ button.is-pressed {
     grid-area: hud;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 4px;
+    gap: 5px;
     min-height: 0;
   }
 
@@ -605,13 +610,16 @@ button.is-pressed {
     font-size: 10px;
     line-height: 1;
     box-shadow: 0 3px 0 rgba(63, 54, 70, 0.16);
+    white-space: nowrap;
   }
 
   .canvas-frame {
-    grid-area: game;
+    grid-column: 2;
+    grid-row: 2;
     min-width: 0;
     min-height: 0;
     height: 100%;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -619,18 +627,32 @@ button.is-pressed {
 
   canvas {
     width: auto;
-    height: min(100%, calc(100svh - 68px));
+    height: 100%;
     max-width: 100%;
-    max-height: calc(100svh - 68px);
+    max-height: 100%;
     aspect-ratio: 16 / 9;
     border-width: 4px;
     border-radius: 18px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.14);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14);
     display: block;
   }
 
   .mobile-controls {
-    display: contents;
+    grid-column: 1 / 4;
+    grid-row: 2;
+    min-width: 0;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: clamp(90px, 11vw, 126px) minmax(0, 1fr) clamp(132px, 17vw, 190px);
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+    grid-template-areas:
+      "left . start"
+      "left . pause"
+      "right . restart"
+      "right . bark";
+    gap: 6px 5px;
+    pointer-events: none;
+    z-index: 5;
   }
 
   .mobile-top-row,
@@ -638,126 +660,50 @@ button.is-pressed {
     display: contents;
   }
 
-  #mobileLeftButton,
-  #mobileRightButton {
+  .mobile-controls button {
+    pointer-events: auto;
     width: 100%;
+    height: 100%;
+    min-height: 0;
     border-radius: 16px;
     border-width: 2px;
-    box-shadow: 0 4px 0 rgba(63, 54, 70, 0.2);
-    padding: 5px 6px;
-    font-size: 24px;
+    padding: 5px 7px;
+    font-size: 11px;
+    box-shadow: 0 4px 0 rgba(63, 54, 70, 0.22);
+  }
+
+  #mobileStartButton { grid-area: start; }
+  #mobilePauseButton { grid-area: pause; }
+  #mobileRestartButton { grid-area: restart; }
+  #mobileLeftButton { grid-area: left; }
+  #mobileRightButton { grid-area: right; }
+  #mobileBarkButton { grid-area: bark; }
+
+  .move-button {
+    font-size: 30px !important;
     line-height: 1;
-    min-height: 0;
     background: linear-gradient(180deg, #fffdf8 0%, #efe7dd 100%);
     color: var(--ink);
   }
 
-  #mobileLeftButton {
-    grid-area: left;
-    align-self: stretch;
-  }
-
-  #mobileRightButton {
-    position: absolute;
-    left: -9999px;
-  }
-
-  .left-control-stack {
-    display: none;
-  }
-
-  /* Right-side control layout using existing buttons */
-  #mobileStartButton,
-  #mobilePauseButton,
-  #mobileRestartButton,
-  #mobileBarkButton {
-    grid-area: right;
-    width: 100%;
-    border-radius: 16px;
-    border-width: 2px;
-    padding: 4px 7px;
-    font-size: 11px;
-    box-shadow: 0 4px 0 rgba(63, 54, 70, 0.22);
-    min-height: 0;
-  }
-
-  #mobileStartButton { align-self: start; height: 48px; }
-  #mobilePauseButton { align-self: start; margin-top: 52px; height: 48px; }
-  #mobileRestartButton { align-self: start; margin-top: 104px; height: 48px; }
-
-  #mobileBarkButton {
-    align-self: end;
-    height: 96px;
-    font-size: 20px !important;
-    letter-spacing: 0.03em;
+  .bark-mobile {
+    min-height: 0 !important;
+    font-size: 22px !important;
+    letter-spacing: 0.04em;
     background: linear-gradient(180deg, #7ea37e 0%, #5d7e61 100%);
     color: #f7ffdb;
   }
 
-  /* Create second arrow visually on right edge of game using pseudo button style slot */
-  .canvas-frame::before,
-  .canvas-frame::after {
-    content: "";
-    display: none;
-  }
-}
-
-/* More refined landscape with split-thumb controls */
-@media (orientation: landscape) and (max-height: 520px) {
-  .game-column {
-    position: relative;
-  }
-
-  #mobileLeftButton {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 68px;
-    height: 68px;
-    z-index: 3;
-  }
-
+  #mobileLeftButton,
   #mobileRightButton {
-    position: absolute;
-    left: auto;
-    right: 112px;
-    bottom: 0;
-    width: 68px;
-    height: 68px;
-    z-index: 3;
-    display: block;
-    font-size: 24px;
-    line-height: 1;
-    background: linear-gradient(180deg, #fffdf8 0%, #efe7dd 100%);
-    color: var(--ink);
-    border-radius: 16px;
-    border-width: 2px;
-    box-shadow: 0 4px 0 rgba(63, 54, 70, 0.2);
-    padding: 5px 6px;
-    min-height: 0;
+    font-size: 34px !important;
   }
-
-  #mobileStartButton,
-  #mobilePauseButton,
-  #mobileRestartButton,
-  #mobileBarkButton {
-    position: absolute;
-    right: 0;
-    width: 108px;
-  }
-}
-
-@media (orientation: landscape) and (max-height: 520px) {
-  #mobileStartButton { top: 0; }
-  #mobilePauseButton { top: 52px; }
-  #mobileRestartButton { top: 104px; }
-  #mobileBarkButton { bottom: 0; }
 }
 
 /* Extra-tight Safari landscape */
 @media (orientation: landscape) and (max-height: 410px) {
   .app-shell {
-    grid-template-rows: 24px 24px 1fr;
+    grid-template-rows: 26px minmax(0, 1fr);
     gap: 3px;
   }
 
@@ -777,9 +723,9 @@ button.is-pressed {
   }
 
   .game-column {
-    grid-template-columns: 64px minmax(0, 1fr) 96px;
+    grid-template-columns: clamp(78px, 10vw, 104px) minmax(0, 1fr) clamp(118px, 15vw, 160px);
     grid-template-rows: 24px minmax(0, 1fr);
-    gap: 3px;
+    gap: 4px;
   }
 
   .hud div {
@@ -788,34 +734,25 @@ button.is-pressed {
   }
 
   canvas {
-    height: min(100%, calc(100svh - 56px));
-    max-height: calc(100svh - 56px);
     border-radius: 16px;
+  }
+
+  .mobile-controls {
+    grid-template-columns: clamp(78px, 10vw, 104px) minmax(0, 1fr) clamp(118px, 15vw, 160px);
+    gap: 5px 4px;
+  }
+
+  .mobile-controls button {
+    font-size: 10px;
+    border-radius: 13px;
   }
 
   #mobileLeftButton,
   #mobileRightButton {
-    width: 60px;
-    height: 60px;
-    font-size: 22px;
-    border-radius: 14px;
+    font-size: 28px !important;
   }
 
-  #mobileRightButton {
-    right: 100px;
+  .bark-mobile {
+    font-size: 18px !important;
   }
-
-  #mobileStartButton,
-  #mobilePauseButton,
-  #mobileRestartButton,
-  #mobileBarkButton {
-    width: 96px;
-    font-size: 10px;
-    border-radius: 14px;
-  }
-
-  #mobileStartButton { height: 40px; top: 0; }
-  #mobilePauseButton { height: 40px; top: 44px; }
-  #mobileRestartButton { height: 40px; top: 88px; }
-  #mobileBarkButton { height: 82px; bottom: 0; font-size: 18px !important; }
 }

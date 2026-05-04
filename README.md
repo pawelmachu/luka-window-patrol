@@ -180,10 +180,22 @@ This version follows safer browser-game deployment practices:
 - Safari’s address bar may still appear in normal browser mode; for the cleanest full-screen feeling, add the site to the iPhone Home Screen
 
 
-## V21 balanced landscape
+## V22 stable mobile
 
-- restored a compact title row in landscape with Luka portrait and sound button visible
-- made Start, Pause, and Restart narrower in landscape
-- moved movement arrows into split-thumb positions for easier two-hand play
-- kept a large BARK button on the right side
-- tuned the layout to fit both Safari landscape and Add to Home Screen landscape more reliably
+- replaced the broken landscape layout with a simpler, stable grid
+- title, Luka portrait, and sound button stay visible in landscape
+- HUD stays above the game
+- game canvas stays centered and proportional
+- touch controls stay visible on the right
+- portrait mode remains playable with the rotate hint
+
+
+## V23 split controls
+
+- uses V22 as the stable base
+- landscape now splits controls for better two-hand gameplay:
+  - left side: movement arrows
+  - center: game screen
+  - right side: Start, Pause, Restart and BARK
+- avoids absolute positioning so controls do not fall off-screen
+- keeps portrait mode and rotate hint

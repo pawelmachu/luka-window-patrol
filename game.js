@@ -1,4 +1,4 @@
-// V21 balanced landscape
+// V23 split controls
 // V14 final tested mobile build
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
