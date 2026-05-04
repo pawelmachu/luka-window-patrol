@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Luka: Window Patrol — V11 Mobile</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="app-header">
+      <div class="title-wrap">
+        <h1>Luka: Window Patrol</h1>
+        <p class="subtitle">Bark at suspicious garden traffic. Please leave the bees alone.</p>
+      </div>
+
+      <div class="header-side">
+        <img class="luka-badge" src="assets/luka-hero-portrait.png" alt="Custom cartoon portrait of Luka" />
+        <button id="soundToggle" class="small-button" type="button" aria-label="Toggle sound">Sound: on</button>
+      </div>
+    </header>
+
+    <section class="game-column">
+      <div class="hud">
+        <div>Level <span id="level">1</span></div>
+        <div>Time <span id="time">75</span>s</div>
+        <div>Score <span id="score">0</span></div>
+        <div>Target <span id="target">8</span></div>
+        <div>Streak <span id="streak">0</span></div>
+      </div>
+
+      <div class="canvas-frame">
+        <canvas id="gameCanvas" width="960" height="540" aria-label="Luka Window Patrol game area"></canvas>
+      </div>
+
+      <div class="controls desktop-controls">
+        <button id="startButton" type="button">Start / Continue</button>
+        <button id="pauseButton" type="button">Pause</button>
+        <button id="restartButton" type="button">Restart from beginning</button>
+        <button id="barkButton" type="button">BARK!</button>
+      </div>
+
+      <div class="mobile-controls" aria-label="Mobile game controls">
+        <div class="mobile-top-row">
+          <button id="mobileStartButton" type="button">Start</button>
+          <button id="mobilePauseButton" type="button">Pause</button>
+          <button id="mobileRestartButton" type="button">Restart</button>
+        </div>
+
+        <div class="mobile-play-row">
+          <button id="mobileLeftButton" class="move-button" type="button" aria-label="Move Luka left">←</button>
+          <button id="mobileBarkButton" class="bark-mobile" type="button">BARK!</button>
+          <button id="mobileRightButton" class="move-button" type="button" aria-label="Move Luka right">→</button>
+        </div>
+      </div>
+
+      <div class="how-to">
+        <p class="desktop-help"><strong>Controls:</strong> Space = bark · Left / Right arrows = move Luka · Enter = start / continue · Esc = pause</p>
+        <p class="mobile-help"><strong>Controls:</strong> Tap BARK · hold ← / → to move Luka · tap the game area to bark</p>
+        <p><strong>Rules:</strong> Bark at people and cats. Ignore bees. Empty barks cost points.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="game.js"></script>
+</body>
+</html>
