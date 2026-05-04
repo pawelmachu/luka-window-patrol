@@ -1,4 +1,4 @@
-// V17 iPhone 16 Pro mobile tuning
+// V19 landscape recommended
 // V14 final tested mobile build
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
@@ -1214,6 +1214,14 @@ document.addEventListener("keydown", event => {
     event.preventDefault();
     moveLuka(1);
   }
+});
+
+window.addEventListener("orientationchange", () => {
+  setTimeout(draw, 180);
+});
+
+window.addEventListener("resize", () => {
+  draw();
 });
 
 updateHud();

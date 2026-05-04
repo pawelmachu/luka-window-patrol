@@ -150,3 +150,20 @@ This version follows safer browser-game deployment practices:
 - reduced header, HUD, button, and bottom help-card height
 - kept the game screen proportional while making it feel larger on phone
 - adjusted the bark zone so it starts at the bottom of the window view and reaches up to the highest character
+
+
+## V18 mobile layout fix
+
+- fixed the large empty gap between the game screen and the controls on mobile
+- tightened the header so the Luka portrait and sound button sit on one line
+- reduced top and bottom UI height so the canvas feels bigger on phone
+- replaced the top-right portrait with a smaller embedded image and CSS fallback
+
+
+## V19 landscape recommendation
+
+- portrait mode remains playable
+- portrait mode now shows a small “Best played sideways” hint
+- landscape mode is optimized for a bigger game canvas
+- landscape mode hides the bottom help card to give more room to the game
+- controls are rearranged for a more game-like landscape mobile experience
