@@ -4,11 +4,12 @@
 
 :root {
   --ink: #3f3646;
+  --ink-soft: #564c5f;
   --lavender: #8d7291;
   --warm-cream: #fffaf4;
-  --green: #5b8566;
-  --yellow: #fff1a8;
-  --danger: #d96b7c;
+  --green: #648968;
+  --green-dark: #537459;
+  --gold: #fff1a8;
   --shadow: rgba(63, 54, 70, 0.18);
 }
 
@@ -50,12 +51,14 @@ body {
 
 .title-wrap {
   min-width: 0;
+  max-width: 65%;
 }
 
 h1 {
   margin: 0;
-  font-size: clamp(28px, 3.4vw, 42px);
-  line-height: 0.95;
+  font-size: clamp(28px, 3.3vw, 42px);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
 }
 
 .subtitle {
@@ -72,14 +75,24 @@ h1 {
   flex: 0 0 auto;
 }
 
-.luka-badge {
+.badge-wrap {
   width: 82px;
   height: 82px;
-  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
   border: 3px solid var(--ink);
-  border-radius: 16px;
+  border-radius: 18px;
   background: rgba(255, 250, 244, 0.95);
   box-shadow: 0 6px 16px var(--shadow);
+}
+
+.luka-badge {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .game-column {
@@ -120,16 +133,16 @@ h1 {
 }
 
 canvas {
-  width: min(100%, calc((100vh - 300px) * 1.7778));
+  width: min(100%, calc((100vh - 314px) * 1.7778));
   max-width: 960px;
-  max-height: calc(100vh - 300px);
+  max-height: calc(100vh - 314px);
   aspect-ratio: 16 / 9;
   display: block;
   margin: 0 auto;
   border: 5px solid var(--ink);
   border-radius: 28px;
   background: white;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.16);
   flex: 0 1 auto;
   touch-action: none;
   user-select: none;
@@ -137,7 +150,7 @@ canvas {
 
 .controls {
   display: flex;
-  gap: 8px;
+  gap: 10px;
   justify-content: center;
   flex-wrap: wrap;
   flex: 0 0 auto;
@@ -150,46 +163,54 @@ canvas {
 button {
   border: 3px solid var(--ink);
   border-radius: 999px;
-  padding: 9px 16px;
+  padding: 10px 16px;
   font-size: 14px;
   font-weight: 900;
   cursor: pointer;
-  background: var(--ink);
-  color: #fff6c5;
-  box-shadow: 0 5px 0 rgba(63, 54, 70, 0.28);
-  transition: transform 0.08s ease, box-shadow 0.08s ease;
+  color: #fff7cd;
+  background: linear-gradient(180deg, #5b5266 0%, #403846 100%);
+  box-shadow: 0 6px 0 rgba(63, 54, 70, 0.26);
+  transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.08s ease;
   user-select: none;
+}
+
+button:hover {
+  filter: brightness(1.03);
 }
 
 button:active,
 button.is-pressed {
   transform: translateY(3px);
-  box-shadow: 0 2px 0 rgba(63, 54, 70, 0.28);
+  box-shadow: 0 3px 0 rgba(63, 54, 70, 0.26);
 }
 
 #barkButton,
 .bark-mobile {
-  background: var(--green);
+  background: linear-gradient(180deg, #7ea37e 0%, #5d7e61 100%);
   color: #f7ffdb;
 }
 
 .small-button {
   padding: 8px 12px;
   font-size: 13px;
-  background: var(--warm-cream);
+  min-width: 108px;
+  background: linear-gradient(180deg, #fffdf8 0%, #efe7dd 100%);
   color: var(--ink);
 }
 
-.how-to {
+.help-card {
+  background: rgba(255, 250, 244, 0.86);
+  border: 2px solid rgba(63, 54, 70, 0.14);
+  border-radius: 18px;
   text-align: center;
   font-size: 12px;
-  line-height: 1.2;
-  opacity: 0.88;
+  line-height: 1.25;
   flex: 0 0 auto;
-  padding-bottom: 2px;
+  padding: 8px 12px;
+  box-shadow: 0 6px 14px rgba(63, 54, 70, 0.06);
 }
 
-.how-to p {
+.help-card p {
   margin: 2px 0;
 }
 
@@ -213,7 +234,6 @@ button.is-pressed {
   }
 }
 
-/* Mobile browser game layout */
 @media (max-width: 768px) {
   html,
   body {
@@ -233,42 +253,57 @@ button.is-pressed {
   .app-shell {
     width: 100%;
     height: calc(100svh - max(8px, env(safe-area-inset-top)) - max(10px, env(safe-area-inset-bottom)));
-    gap: 6px;
+    gap: 8px;
   }
 
   .app-header {
-    gap: 8px;
-    align-items: center;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 10px;
+  }
+
+  .title-wrap {
+    max-width: none;
   }
 
   h1 {
-    font-size: clamp(24px, 7vw, 34px);
+    font-size: clamp(25px, 7.6vw, 36px);
+    line-height: 0.9;
+    letter-spacing: -0.045em;
   }
 
   .subtitle {
     display: none;
   }
 
-  .luka-badge {
-    width: 56px;
-    height: 56px;
-    border-radius: 13px;
+  .header-side {
+    display: grid;
+    justify-items: end;
+    gap: 8px;
+  }
+
+  .badge-wrap {
+    width: 62px;
+    height: 62px;
     border-width: 2px;
+    border-radius: 16px;
   }
 
   .small-button {
-    padding: 8px 10px;
+    min-width: 104px;
+    padding: 9px 12px;
     font-size: 12px;
     border-width: 2px;
   }
 
   .hud {
     grid-template-columns: repeat(5, 1fr);
-    gap: 5px;
+    gap: 6px;
   }
 
   .hud div {
-    padding: 6px 3px;
+    padding: 7px 3px;
     border-width: 2px;
     border-radius: 12px;
     font-size: 11px;
@@ -286,7 +321,7 @@ button.is-pressed {
     max-height: none;
     border-width: 4px;
     border-radius: 22px;
-    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 26px rgba(0, 0, 0, 0.16);
   }
 
   .desktop-controls {
@@ -297,7 +332,7 @@ button.is-pressed {
     display: grid;
     gap: 8px;
     flex: 0 0 auto;
-    padding-bottom: max(2px, env(safe-area-inset-bottom));
+    padding-bottom: 2px;
   }
 
   .mobile-top-row {
@@ -308,37 +343,38 @@ button.is-pressed {
 
   .mobile-play-row {
     display: grid;
-    grid-template-columns: 0.8fr 1.4fr 0.8fr;
+    grid-template-columns: 0.75fr 1.5fr 0.75fr;
     gap: 8px;
     align-items: stretch;
   }
 
   .mobile-controls button {
-    min-height: 44px;
-    border-radius: 18px;
+    min-height: 48px;
+    border-radius: 20px;
     border-width: 2px;
-    padding: 9px 10px;
-    font-size: 14px;
-    box-shadow: 0 4px 0 rgba(63, 54, 70, 0.24);
+    padding: 10px 10px;
+    font-size: 15px;
+    box-shadow: 0 5px 0 rgba(63, 54, 70, 0.22);
   }
 
   .move-button {
-    font-size: 28px !important;
+    font-size: 30px !important;
     line-height: 1;
-    background: var(--warm-cream);
+    background: linear-gradient(180deg, #fffdf8 0%, #efe7dd 100%);
     color: var(--ink);
   }
 
   .bark-mobile {
-    min-height: 62px !important;
-    font-size: 22px !important;
-    letter-spacing: 0.04em;
+    min-height: 68px !important;
+    font-size: 24px !important;
+    letter-spacing: 0.03em;
   }
 
-  .how-to {
-    font-size: 10.5px;
-    line-height: 1.15;
-    padding-bottom: 0;
+  .help-card {
+    border-radius: 16px;
+    padding: 8px 10px;
+    font-size: 10.8px;
+    line-height: 1.22;
   }
 
   .desktop-help {
@@ -351,8 +387,18 @@ button.is-pressed {
 }
 
 @media (max-width: 390px) {
-  .luka-badge {
-    display: none;
+  h1 {
+    font-size: clamp(23px, 7.4vw, 30px);
+  }
+
+  .badge-wrap {
+    width: 56px;
+    height: 56px;
+  }
+
+  .small-button {
+    min-width: 96px;
+    padding: 8px 10px;
   }
 
   .hud div {
@@ -360,16 +406,17 @@ button.is-pressed {
   }
 
   .mobile-controls button {
-    min-height: 40px;
+    min-height: 42px;
     font-size: 13px;
   }
 
   .bark-mobile {
-    min-height: 56px !important;
+    min-height: 58px !important;
   }
 
-  .how-to {
-    display: none;
+  .help-card {
+    font-size: 9.8px;
+    padding: 7px 8px;
   }
 }
 
@@ -382,24 +429,7 @@ button.is-pressed {
     display: none;
   }
 
-  .hud {
-    grid-template-columns: repeat(5, 1fr);
-  }
-
-  .how-to {
+  .help-card {
     display: none;
-  }
-
-  .mobile-controls {
-    grid-template-columns: 0.9fr 1.4fr;
-    align-items: center;
-  }
-
-  .mobile-top-row {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .mobile-play-row {
-    grid-template-columns: 0.65fr 1.2fr 0.65fr;
   }
 }

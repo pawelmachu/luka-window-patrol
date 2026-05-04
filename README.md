@@ -82,3 +82,45 @@ This version adds a mobile-first browser layout for iPhone and similar phones.
 - layout uses safe-area padding for iPhone browser bars
 - accidental page scrolling is reduced while playing
 - the canvas scales to the phone screen
+
+
+## GitHub Pages note
+
+The file `.nojekyll` is included on purpose. It may be hidden on Mac because the filename starts with a dot.
+
+To show hidden files in Finder, press:
+
+`Command + Shift + .`
+
+Upload `.nojekyll` together with the other files when publishing to GitHub Pages.
+
+
+## V13 improvements
+
+- 5 distinct level backgrounds with different moods and time-of-day color palettes
+- tighter, cleaner mobile layout
+- Luka tuned to a slightly larger and better-balanced in-game size for iPhone screens
+- mobile buttons redesigned to feel more game-like
+- fresh asset filenames to avoid stale mobile browser cache
+- improved audio wake-up for iPhone / Safari
+
+
+## V14 final tested notes
+
+This version follows safer browser-game deployment practices:
+
+- Luka gameplay sprites are embedded directly into `game.js` as data URIs to avoid stale-cache issues and broken image paths
+- Luka hero portrait is embedded directly into `index.html`
+- the hosted URL can stay the same if you update the files in the same GitHub repository
+- the package keeps `.nojekyll` for GitHub Pages compatibility
+
+### Testing checklist completed
+
+- zip integrity checked
+- required files checked
+- GitHub Pages files included
+- Luka sprite references verified
+- level background themes verified
+- mobile controls verified
+- desktop arrow controls verified
+- audio wake helper verified
