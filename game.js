@@ -1,4 +1,4 @@
-// V20 true landscape mobile
+// V21 balanced landscape
 // V14 final tested mobile build
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");

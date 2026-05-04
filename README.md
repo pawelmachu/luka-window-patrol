@@ -178,3 +178,12 @@ This version follows safer browser-game deployment practices:
 - this prevents the controls from disappearing below the screen in iPhone landscape Safari
 - portrait mode still works and keeps the rotate hint
 - Safari’s address bar may still appear in normal browser mode; for the cleanest full-screen feeling, add the site to the iPhone Home Screen
+
+
+## V21 balanced landscape
+
+- restored a compact title row in landscape with Luka portrait and sound button visible
+- made Start, Pause, and Restart narrower in landscape
+- moved movement arrows into split-thumb positions for easier two-hand play
+- kept a large BARK button on the right side
+- tuned the layout to fit both Safari landscape and Add to Home Screen landscape more reliably
